@@ -1,0 +1,119 @@
+## 1. What is the gender distribution of respondents from India?
+SELECT Gender, COUNT(*) AS Respondent_Count
+FROM genzaspirants.`career aspiration(cleaned)`
+WHERE Country = 'India'
+GROUP BY Gender;
+
+
+##2. What percentage of respondents from India are interested in education abroad and sponsorship?﻿
+SELECT 
+    (COUNT(CASE WHEN "Self-sponsorship: doubtful" = 'Yes' THEN 1 END) * 100.0) / COUNT(*) AS Sponsorship_Percentage
+FROM genzaspirants.`career aspiration(cleaned)`
+WHERE Country = 'India';
+
+﻿﻿﻿##3. What are the 6 top influences on career aspirations for respondents in India?
+﻿SELECT "Influencing Factors", COUNT(*) AS Count
+FROM genzaspirants.`career aspiration(cleaned)`
+WHERE Country = 'India'
+GROUP BY "Influencing Factors"
+ORDER BY Count DESC
+LIMIT 6;
+
+
+﻿##4. How do career aspiration influences vary by gender in India?﻿
+SELECT Gender, "Influencing Factors", COUNT(*) AS Count
+﻿FROM genzaspirants.`career aspiration(cleaned)`﻿WHERE Country = 'India'
+﻿GROUP BY Gender, "Influencing Factors"
+﻿ORDER BY Gender, Count DESC;
+
+
+﻿﻿##5. What percentage of respondents are willing to work for a company for at least 3 years?﻿SELECT 
+    (COUNT(CASE WHEN "Three-year commitment" = 'Yes' THEN 1 END) * 100.0) / COUNT(*) AS Three_Year_Commitment_Percentage
+FROM genzaspirants.`career aspiration(cleaned)`;﻿﻿﻿
+
+
+##6. How many respondents prefer to work for socially impactful companies?﻿
+SELECT COUNT(*) AS Socially_Impactful_Preference
+FROM genzaspirants.`career aspiration(cleaned)`
+WHERE "Preferred company type" = 'Socially impactful';
+
+
+﻿##7. How does the preference for socially impactful companies vary by gender?﻿
+SELECT Gender, COUNT(*) AS Count
+FROM genzaspirants.`career aspiration(cleaned)`
+WHERE "Preferred company type" = 'Socially impactful'
+GROUP BY Gender;
+
+##8. What is the distribution of minimum expected salary in the first three years among respondents?﻿
+SELECT "Minimum expected salary for first 3 years?", COUNT(*) AS Count
+FROM genzaspirants.`career aspiration(cleaned)`
+GROUP BY "Minimum expected salary for first 3 years?"
+ORDER BY "Minimum expected salary for first 3 years?";
+
+
+﻿﻿##9. What is the expected minimum monthly salary in hand?﻿
+SELECT AVG("Starting salary expectations (monthly in hand)?") AS Avg_Expected_Monthly_Salary
+FROM genzaspirants.`career aspiration(cleaned)`;
+
+﻿﻿##10. What percentage of respondents prefer remote working?﻿
+SELECT 
+    (COUNT(CASE WHEN "Preferred work setup?" = 'Remote' THEN 1 END) * 100.0) / COUNT(*) AS Remote_Working_Percentage
+FROM genzaspirants.`career aspiration(cleaned)';
+
+﻿﻿##11. What is the preferred number of daily work hours?﻿
+SELECT "Daily work hours?", COUNT(*) AS Count
+FROM  genzaspirants.`career aspiration(cleaned)'
+GROUP BY "Daily work hours?"
+ORDER BY Count DESC;
+
+﻿﻿##12. What are the common work frustrations among respondents?﻿
+SELECT "Work frustrations?", COUNT(*) AS Count
+FROM genzaspirants.`career aspiration(cleaned)'
+GROUP BY "Work frustrations?"
+ORDER BY Count DESC;
+
+##13. How does the need for work-life balance interventions vary by gender?﻿
+SELECT Gender, COUNT(*) AS Count
+FROM genzaspirants.`career aspiration(cleaned)'
+WHERE "Keys to work satisfaction?" LIKE '%Work-life balance%'
+GROUP BY Gender;
+
+
+﻿##14. How many respondents are willing to work under an abusive manager?
+﻿SELECT COUNT(*) AS Willing_To_Work_Under_Abusive_Manager
+FROM genzaspirants.`career aspiration(cleaned)'
+WHERE "Work under an abusive manager?" = 'Yes';
+
+
+﻿##15. What is the distribution of minimum expected salary after five years?﻿
+SELECT "Expected salary after 5 years?", COUNT(*) AS Count
+FROM genzaspirants.`career aspiration(cleaned)'
+GROUP BY "Expected salary after 5 years?"
+ORDER BY "Expected salary after 5 years?";
+
+
+﻿##16. What are the remote working preferences by gender?﻿
+SELECT Gender, COUNT(*) AS Count
+FROM genzaspirants.`career aspiration(cleaned)'
+WHERE "Preferred work setup?" = 'Remote'
+GROUP BY Gender;
+
+##17. What are the top work frustrations for each gender?
+SELECT Gender, "Work frustrations?", COUNT(*) AS Count
+FROM genzaspirants.`career aspiration(cleaned)'
+GROUP BY Gender, "Work frustrations?"
+ORDER BY Gender, Count DESC;
+
+
+﻿##18. What factors boost work happiness and productivity for respondents?﻿
+SELECT "Keys to work satisfaction?", COUNT(*) AS Count
+FROM genzaspirants.`career aspiration(cleaned)'
+GROUP BY "Keys to work satisfaction?"
+ORDER BY Count DESC;
+
+
+﻿##19. What percentage of respondents need sponsorship for education abroad?﻿
+SELECT 
+    (COUNT(CASE WHEN "Self-sponsorship: doubtful" = 'Yes' THEN 1 END) * 100.0) / COUNT(*) AS Sponsorship_Need_Percentage
+FROM genzaspirants.`career aspiration(cleaned)';
+﻿
